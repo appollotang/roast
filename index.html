@@ -16,8 +16,7 @@
             background-color: #050505;
             font-family: 'Inter', sans-serif;
             color: #e0e0e0;
-            background-image: radial-gradient(circle at 50% 50%, #2e0b0b 0%, #000000 100%); /* Changed to reddishbg */
-            /* Force centering fallback */
+            background-image: radial-gradient(circle at 50% 50%, #2e0b0b 0%, #000000 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -26,11 +25,9 @@
             margin: 0;
         }
         
-        /* Neon Effects - UPDATED TO FLAME ORANGE/RED */
+        /* Neon Effects */
         .neon-text-orange { text-shadow: 0 0 10px #ff3300, 0 0 20px #ff3300; color: #ff3300; }
-        .neon-text-blue { text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc; color: #00ffcc; }
         .neon-border-orange { box-shadow: 0 0 15px rgba(255, 51, 0, 0.3); border: 1px solid #ff3300; }
-        .neon-border-blue { box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); border: 1px solid #00ffcc; }
         
         .font-cyber { font-family: 'Orbitron', sans-serif; }
         .font-banger { font-family: 'Bangers', cursive; }
@@ -61,7 +58,6 @@
         .matrix-text { font-family: 'Courier New', monospace; color: #ff3300; }
 
         /* Blur Lock */
-        .blur-lock { filter: blur(5px); pointer-events: none; user-select: none; }
         .lock-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85);
@@ -159,81 +155,40 @@
             <h2 class="text-3xl font-cyber font-bold text-center neon-text-orange">VIRAL CONTENT LAB</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div class="bg-gray-900 border border-gray-700 p-4 rounded-xl relative group col-span-1 md:col-span-3 lg:col-span-1">
-    <div class="absolute -top-3 left-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">OPTION A: VIDEO REACTION</div>
-    
-    <div class="flex space-x-2 mt-4 mb-2 justify-center">
-        <button onclick="changeVideo('turkey')" class="text-2xl hover:scale-125 transition">🦃</button>
-        <button onclick="changeVideo('pig')" class="text-2xl hover:scale-125 transition">🐷</button>
-        <button onclick="changeVideo('fire')" class="text-2xl hover:scale-125 transition">🔥</button>
-        <button onclick="changeVideo('Marshmallow')" class="text-2xl hover:scale-125 transition">▫️</button>
-        <button onclick="changeVideo('Chilli')" class="text-2xl hover:scale-125 transition">♨️</button>
-    </div>
+                
+                <div class="bg-gray-900 border border-gray-700 p-4 rounded-xl relative group col-span-1 md:col-span-3 lg:col-span-1">
+                    <div class="absolute -top-3 left-4 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">OPTION A: VIDEO REACTION</div>
+                    
+                    <div class="flex space-x-2 mt-4 mb-2 justify-center">
+                        <button onclick="changeVideo('turkey')" class="text-2xl hover:scale-125 transition" title="Turkey">🦃</button>
+                        <button onclick="changeVideo('pig')" class="text-2xl hover:scale-125 transition" title="Pig">🐷</button>
+                        <button onclick="changeVideo('marshmallow')" class="text-2xl hover:scale-125 transition" title="Marshmallow">▫️</button>
+                        <button onclick="changeVideo('chilli')" class="text-2xl hover:scale-125 transition" title="Chilli">🌶️</button>
+                    </div>
 
-    <div class="relative w-full aspect-[9/16] bg-black rounded-lg overflow-hidden border border-gray-600">
-        <video id="roast-video" class="absolute inset-0 w-full h-full object-cover opacity-60" autoplay loop muted playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-fire-burning-in-slow-motion-1358-large.mp4" type="video/mp4">
-        </video>
+                    <div class="relative w-full aspect-[9/16] bg-black rounded-lg overflow-hidden border border-gray-600">
+                        <video id="roast-video" class="absolute inset-0 w-full h-full object-cover opacity-60" autoplay loop muted playsinline>
+                            <source src="" type="video/mp4">
+                        </video>
 
-        <div class="absolute inset-0 flex flex-col justify-center items-center p-4 text-center z-10">
-            <h3 class="text-white font-banger text-2xl shadow-black drop-shadow-md mb-2">POV: YOU GOT ROASTED</h3>
-            <p id="video-overlay-text" class="text-white font-bold font-mono text-sm bg-black/50 p-2 rounded shadow-lg backdrop-blur-sm border border-red-500">
-                "Waiting for roast..."
-            </p>
-            <div class="mt-4 text-[#00ffcc] font-cyber text-xs">@BioRater.ai</div>
-        </div>
-    </div>
+                        <div class="absolute inset-0 flex flex-col justify-center items-center p-4 text-center z-10">
+                            <h3 class="text-white font-banger text-2xl shadow-black drop-shadow-md mb-2">POV: YOU GOT ROASTED</h3>
+                            <p id="video-overlay-text" class="text-white font-bold font-mono text-sm bg-black/50 p-2 rounded shadow-lg backdrop-blur-sm border border-red-500">
+                                "Waiting for roast..."
+                            </p>
+                            <div class="mt-4 text-[#00ffcc] font-cyber text-xs">@BioRater.ai</div>
+                        </div>
+                    </div>
 
-    <div class="grid grid-cols-2 gap-2 mt-3">
-        <button onclick="downloadVideoAsset()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs py-2 rounded font-bold">⬇️ Download Video</button>
-        <button onclick="copyOverlayText()" class="bg-gray-700 hover:bg-gray-600 text-white text-xs py-2 rounded">📋 Copy Text</button>
-    </div>
-    <p class="text-[10px] text-gray-500 text-center mt-2">Download video + paste text in TikTok/Reels</p>
-</div>
+                    <div class="grid grid-cols-2 gap-2 mt-3">
+                        <button onclick="downloadVideoAsset()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs py-2 rounded font-bold">⬇️ Download</button>
+                        <button onclick="copyOverlayText()" class="bg-gray-700 hover:bg-gray-600 text-white text-xs py-2 rounded">📋 Copy Text</button>
+                    </div>
+                    <p class="text-[10px] text-gray-500 text-center mt-2">Download video + paste text in TikTok/Reels</p>
+                </div>
 
-<script>
-    // VIDEO ASSETS (Host these on your GitHub!)
-    const videoAssets = {
-        'turkey': 'https://github.com/appollotang/roast/blob/ef8f1938050a5e4796c30183d57b0f0813863ca2/turkey.mp4',
-        'pig': 'https://github.com/appollotang/roast/blob/ef8f1938050a5e4796c30183d57b0f0813863ca2/pig.mp4',
-        'fire': 'https://assets.mixkit.co/videos/preview/mixkit-fire-burning-in-slow-motion-1358-large.mp4'
-        'Marshmallow': 'https://github.com/appollotang/roast/blob/ef8f1938050a5e4796c30183d57b0f0813863ca2/marshmallow.mp4',
-        'Chilli': 'https://github.com/appollotang/roast/blob/ef8f1938050a5e4796c30183d57b0f0813863ca2/chilli.mp4', // Placeholder
-    };
-
-    let currentVideoKey = 'fire';
-
-    function changeVideo(character) {
-        const videoEl = document.getElementById('roast-video');
-        currentVideoKey = character;
-        // Check if you have real links, otherwise alert
-        if(videoAssets[character].includes('URL_TO')) {
-            alert("You need to upload a video for the " + character + " first!");
-            return;
-        }
-        videoEl.src = videoAssets[character];
-        videoEl.play();
-    }
-
-    function downloadVideoAsset() {
-        // Downloads the raw video file
-        const link = document.createElement('a');
-        link.href = document.getElementById('roast-video').src;
-        link.download = `biorater-${currentVideoKey}.mp4`;
-        link.click();
-    }
-
-    function copyOverlayText() {
-        const text = document.getElementById('video-overlay-text').innerText;
-        navigator.clipboard.writeText(text);
-        alert("Overlay text copied! Paste it in TikTok.");
-    }
-
-    // UPDATE THE REVEAL FUNCTION TO UPDATE THIS TEXT TOO
-    // Find your existing 'revealResults' function and add this line inside:
-    // document.getElementById('video-overlay-text').innerText = roastData.roast;
-</script>                
-                rounded">OPTION B: MEME</div>
+                <div class="bg-gray-900 border border-[#ff3300] p-4 rounded-xl relative flex flex-col items-center shadow-[0_0_20px_rgba(255,51,0,0.2)]">
+                    <div class="absolute -top-3 left-4 bg-[#ff3300] text-black text-xs font-bold px-2 py-1 rounded">OPTION B: MEME</div>
                     
                     <canvas id="memeCanvas" width="400" height="550" class="w-full h-auto rounded mt-4 border border-gray-600"></canvas>
                     
@@ -270,13 +225,30 @@
         // *** PASTE YOUR GOOGLE SCRIPT URL BELOW ***
         const API_URL = "https://script.google.com/macros/s/AKfycbxiSCxhtGGNTlDM8tt-f52B67RopGWh2eUFwDkbJQu45Rjd6mAy2IxySNxaje74LzUN/exec"; 
 
+        // VIDEO ASSETS (Using Correct Raw GitHub URLs)
+        const videoAssets = {
+            'turkey': 'https://raw.githubusercontent.com/appollotang/roast/main/turkey.mp4',
+            'pig': 'https://raw.githubusercontent.com/appollotang/roast/main/pig.mp4',
+            'marshmallow': 'https://raw.githubusercontent.com/appollotang/roast/main/marshmallow.mp4',
+            'chilli': 'https://raw.githubusercontent.com/appollotang/roast/main/chilli.mp4'
+        };
+
+        // IMAGE ASSET (For the Card Background)
+        const fireCardBgUrl = "https://raw.githubusercontent.com/appollotang/roast/main/fire.jpg";
+
+        let currentVideoKey = 'turkey'; // Default to turkey
         let userUploadedImg = null;
-        let defaultTurkeyImg = new Image();
+        let fireBgImg = new Image(); // The fire.jpg background
         let roastData = null;
 
-        // PRELOAD THE TURKEY IMAGE
-        defaultTurkeyImg.crossOrigin = "Anonymous";
-        defaultTurkeyImg.src = "https://img.icons8.com/color/480/roasted-turkey.png"; // High quality turkey icon
+        // PRELOAD ASSETS
+        fireBgImg.crossOrigin = "Anonymous";
+        fireBgImg.src = fireCardBgUrl;
+        
+        // Initialize default video
+        window.onload = function() {
+            changeVideo('turkey');
+        };
 
         function previewImage(input) {
             if (input.files && input.files[0]) {
@@ -348,6 +320,9 @@
             document.getElementById('score-display').innerText = roastData.score + "/10";
             document.getElementById('roast-text').innerText = '"' + roastData.roast + '"';
             
+            // Set Video Overlay Text
+            document.getElementById('video-overlay-text').innerText = roastData.roast;
+
             const list = document.getElementById('remedies-list');
             list.innerHTML = '';
             roastData.remedies.forEach(r => {
@@ -357,90 +332,110 @@
             });
 
             document.getElementById('caption-text').value = `${roastData.meme_text} 💀 Score: ${roastData.score}/10 @${handle} #BioRater`;
-            document.getElementById('video-script').innerText = `[Scene: Camera shaking, vine boom sound effect]\nYOU: "I asked AI to rate my ${platform}..."\n[Cut to: Screen recording of score ${roastData.score}/10]\nYOU: (Crying) "It said ${roastData.roast}"\n[Text Overlay: EMOTIONAL DAMAGE 💀]`;
-
+            
             drawCard(roastData.score, handle, roastData.roast);
         }
 
+        // --- VIDEO FUNCTIONS ---
+        function changeVideo(character) {
+            const videoEl = document.getElementById('roast-video');
+            currentVideoKey = character;
+            if (videoAssets[character]) {
+                videoEl.src = videoAssets[character];
+                videoEl.play();
+            } else {
+                console.error("Video asset not found for:", character);
+            }
+        }
+
+        function downloadVideoAsset() {
+            const link = document.createElement('a');
+            link.href = videoAssets[currentVideoKey];
+            link.download = `biorater-${currentVideoKey}.mp4`;
+            link.click();
+        }
+
+        function copyOverlayText() {
+            const text = document.getElementById('video-overlay-text').innerText;
+            navigator.clipboard.writeText(text);
+            alert("Overlay text copied! Paste it in TikTok.");
+        }
+
+        // --- CANVAS MEME CARD ---
         function drawCard(score, handle, roastText) {
             const canvas = document.getElementById('memeCanvas');
             const ctx = canvas.getContext('2d');
 
-            // 1. Background
-            ctx.fillStyle = "#ffffff";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // 1. Background (Draw fire.jpg)
+            try {
+                // Draw the fire background image to fill the canvas
+                ctx.drawImage(fireBgImg, 0, 0, canvas.width, canvas.height);
+                
+                // Add a semi-transparent black overlay to make text readable
+                ctx.fillStyle = "rgba(0, 0, 0, 0.4)"; 
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            } catch (e) {
+                // Fallback if fire.jpg fails
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
             
             // 2. Black Border
             ctx.strokeStyle = "#000";
             ctx.lineWidth = 10;
             ctx.strokeRect(5, 5, canvas.width-10, canvas.height-10);
 
-            // 3. Simulated Flames (Emoji Background)
-            ctx.font = "150px Arial";
-            ctx.globalAlpha = 0.1;
-            ctx.fillText("🔥", 50, 200);
-            ctx.fillText("🔥", 200, 200);
-            ctx.globalAlpha = 1.0;
-
-            // 4. Image Area (TURKEY LOGIC HERE)
+            // 3. User Image Area
             if (userUploadedImg) {
-                // Draw user image
                 ctx.drawImage(userUploadedImg, 60, 120, 280, 280);
                 ctx.lineWidth = 4;
+                ctx.strokeStyle = "#ff3300"; // Neon orange border for user img
                 ctx.strokeRect(60, 120, 280, 280);
             } else {
-                // DRAW THE ROASTED TURKEY
-                try {
-                    ctx.drawImage(defaultTurkeyImg, 60, 120, 280, 280);
-                    ctx.lineWidth = 4;
-                    ctx.strokeRect(60, 120, 280, 280);
-                } catch (e) {
-                    // Fallback if turkey fails to load
-                    ctx.fillStyle = "#eee";
-                    ctx.fillRect(60, 120, 280, 280);
-                    ctx.fillStyle = "#000";
-                    ctx.font = "20px Arial";
-                    ctx.textAlign = "center";
-                    ctx.fillText("NO IMAGE", 200, 260);
-                }
+                ctx.fillStyle = "#eee";
+                ctx.fillRect(60, 120, 280, 280);
+                ctx.fillStyle = "#000";
+                ctx.font = "20px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText("NO IMAGE", 200, 260);
             }
 
-            // 5. "ROASTED" Logo (Heavy Style)
+            // 4. "ROASTED" Logo
             ctx.textAlign = "center";
             ctx.font = "900 85px 'Bangers'";
-            
-            // Shadow
             ctx.fillStyle = "black";
             ctx.fillText("ROASTED", 205, 95);
-            // Stroke
             ctx.lineWidth = 6;
-            ctx.strokeStyle = "#8b0000"; // Dark red stroke
+            ctx.strokeStyle = "#8b0000"; 
             ctx.strokeText("ROASTED", 200, 90);
-            // Main Color (Gradient)
             let gradient = ctx.createLinearGradient(0, 50, 0, 100);
-            gradient.addColorStop(0, "#ffeb3b"); // Yellow
-            gradient.addColorStop(0.5, "#ff0000"); // Red
+            gradient.addColorStop(0, "#ffeb3b");
+            gradient.addColorStop(0.5, "#ff0000");
             ctx.fillStyle = gradient;
             ctx.fillText("ROASTED", 200, 90);
 
-            // 6. Score & Handle
-            ctx.fillStyle = "#000";
+            // 5. Score & Handle (White text with shadow for readability on fire bg)
+            ctx.shadowColor = "black";
+            ctx.shadowBlur = 5;
+            
+            ctx.fillStyle = "#ffffff";
             ctx.font = "bold 24px 'Oswald'";
             ctx.fillText("@" + handle.toUpperCase(), 200, 440);
             
             ctx.font = "18px Arial";
-            ctx.fillStyle = "#333";
+            ctx.fillStyle = "#eeeeee";
             ctx.fillText("Your Roast Score:", 200, 470);
 
-            ctx.fillStyle = "#cc0000";
+            ctx.shadowBlur = 0; // Reset shadow for score
+            ctx.fillStyle = "#ff3300"; // Neon Orange Score
             ctx.font = "900 80px 'Oswald'";
             ctx.fillText(score + "/10", 200, 540);
 
-            // 7. Side Vertical Text
+            // 6. Side Vertical Text
             ctx.save();
             ctx.translate(40, 400);
             ctx.rotate(-Math.PI/2);
-            ctx.fillStyle = "#000";
+            ctx.fillStyle = "#ffffff";
             ctx.font = "bold 16px Arial";
             ctx.fillText("AI BIO ROAST :: " + roastText.substring(0,25) + "...", 0, 0);
             ctx.restore();
@@ -467,12 +462,6 @@
             const text = document.getElementById('caption-text').value;
             navigator.clipboard.writeText(text);
             alert("Caption Copied!");
-        }
-
-        function copyScript() {
-            const text = document.getElementById('video-script').innerText;
-            navigator.clipboard.writeText(text);
-            alert("Script Copied!");
         }
     </script>
 
