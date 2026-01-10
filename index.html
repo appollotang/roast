@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Bio-Rater | Cyberpunk Edition</title>
+    
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/appollotang/roast/main/favicon.ico">
+
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&family=Bangers&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAl2FqcC5YdWD2QktmDi7Htp0WAzhYwOL7a4YxHutJBsJOKPB2iLvwexvs6mlE8a7iQ1O3B9DmEAV4wXc&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&family=Bangers&family=Oswald:wght@700&family=Rye&display=swap" rel="stylesheet">
     
     <style>
         /* --- CYBERPUNK THEME --- */
@@ -209,9 +214,9 @@
 
     <script>
         // *** PASTE YOUR GOOGLE SCRIPT URL BELOW ***
-        const API_URL = "https://script.google.com/macros/s/AKfycbyJwYoLntplCDkDCpP3dAR6Hn6gjxms5jxoRTpNQV27rMPo2w1vf4Sf7J2IRmC0tpGC/exec"; 
+        const API_URL = "https://script.google.com/macros/s/AKfycbxiSCxhtGGNTlDM8tt-f52B67RopGWh2eUFwDkbJQu45Rjd6mAy2IxySNxaje74LzUN/exec"; 
 
-        // VIDEO ASSETS (Using Correct Raw GitHub URLs)
+        // VIDEO ASSETS
         const videoAssets = {
             'turkey': 'https://raw.githubusercontent.com/appollotang/roast/main/turkey.mp4',
             'pig': 'https://raw.githubusercontent.com/appollotang/roast/main/pig.mp4',
@@ -219,17 +224,22 @@
             'chilli': 'https://raw.githubusercontent.com/appollotang/roast/main/chilli.mp4'
         };
 
-        // IMAGE ASSET (For the Card Background)
-        const fireCardBgUrl = "https://raw.githubusercontent.com/appollotang/roast/main/fire.jpg";
+        // IMAGE ASSETS (GitHub)
+        const fireCardBgUrl = "https://raw.githubusercontent.com/appollotang/roast/main/Background_roasting_image.jpg";
+        const noBioImgUrl = "https://raw.githubusercontent.com/appollotang/roast/main/No%20Bio%20image.png";
 
-        let currentVideoKey = 'turkey'; // Default to turkey
+        let currentVideoKey = 'turkey';
         let userUploadedImg = null;
-        let fireBgImg = new Image(); // The fire.jpg background
+        let fireBgImg = new Image();
+        let noBioImg = new Image(); // Fallback image
         let roastData = null;
 
         // PRELOAD ASSETS
         fireBgImg.crossOrigin = "Anonymous";
         fireBgImg.src = fireCardBgUrl;
+
+        noBioImg.crossOrigin = "Anonymous";
+        noBioImg.src = noBioImgUrl;
         
         // Initialize default video
         window.onload = function() {
@@ -352,17 +362,17 @@
             const canvas = document.getElementById('memeCanvas');
             const ctx = canvas.getContext('2d');
 
-            // 1. Background (Draw fire.jpg)
+            // 1. Background (Draw new background image)
             try {
-                // Draw the fire background image to fill the canvas
+                // Draw the background image to fill the canvas
                 ctx.drawImage(fireBgImg, 0, 0, canvas.width, canvas.height);
                 
                 // Add a semi-transparent black overlay to make text readable
                 ctx.fillStyle = "rgba(0, 0, 0, 0.4)"; 
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             } catch (e) {
-                // Fallback if fire.jpg fails
-                ctx.fillStyle = "#ffffff";
+                // Fallback
+                ctx.fillStyle = "#220000";
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
             }
             
@@ -371,24 +381,32 @@
             ctx.lineWidth = 10;
             ctx.strokeRect(5, 5, canvas.width-10, canvas.height-10);
 
-            // 3. User Image Area
+            // 3. User Image Area (Or No Bio Image)
             if (userUploadedImg) {
                 ctx.drawImage(userUploadedImg, 60, 120, 280, 280);
                 ctx.lineWidth = 4;
                 ctx.strokeStyle = "#ff3300"; // Neon orange border for user img
                 ctx.strokeRect(60, 120, 280, 280);
             } else {
-                ctx.fillStyle = "#eee";
-                ctx.fillRect(60, 120, 280, 280);
-                ctx.fillStyle = "#000";
-                ctx.font = "20px Arial";
-                ctx.textAlign = "center";
-                ctx.fillText("NO IMAGE", 200, 260);
+                // FALLBACK: Use the No Bio Image
+                try {
+                    ctx.drawImage(noBioImg, 60, 120, 280, 280);
+                    ctx.lineWidth = 4;
+                    ctx.strokeStyle = "#555";
+                    ctx.strokeRect(60, 120, 280, 280);
+                } catch(e) {
+                     ctx.fillStyle = "#eee";
+                     ctx.fillRect(60, 120, 280, 280);
+                     ctx.fillStyle = "#000";
+                     ctx.font = "20px Arial";
+                     ctx.textAlign = "center";
+                     ctx.fillText("NO IMAGE", 200, 260);
+                }
             }
 
-            // 4. "ROASTED" Logo
+            // 4. "ROASTED" Logo - UPDATED FONT (Rye)
             ctx.textAlign = "center";
-            ctx.font = "900 85px 'Bangers'";
+            ctx.font = "400 85px 'Rye'"; // Use the BBQ Font
             ctx.fillStyle = "black";
             ctx.fillText("ROASTED", 205, 95);
             ctx.lineWidth = 6;
@@ -400,7 +418,7 @@
             ctx.fillStyle = gradient;
             ctx.fillText("ROASTED", 200, 90);
 
-            // 5. Score & Handle (White text with shadow for readability on fire bg)
+            // 5. Score & Handle
             ctx.shadowColor = "black";
             ctx.shadowBlur = 5;
             
@@ -417,14 +435,7 @@
             ctx.font = "900 80px 'Oswald'";
             ctx.fillText(score + "/10", 200, 540);
 
-            // 6. Side Vertical Text
-            ctx.save();
-            ctx.translate(40, 400);
-            ctx.rotate(-Math.PI/2);
-            ctx.fillStyle = "#ffffff";
-            ctx.font = "bold 16px Arial";
-            ctx.fillText("AI BIO ROAST :: " + roastText.substring(0,25) + "...", 0, 0);
-            ctx.restore();
+            // Side Text REMOVED per instructions
         }
 
         function downloadCard() {
